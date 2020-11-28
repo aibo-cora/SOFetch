@@ -1,5 +1,5 @@
 //
-//  TableViewCell.swift
+//  QuestionViewCell.swift
 //  SOFetch
 //
 //  Created by Yura on 11/28/20.
@@ -27,6 +27,6 @@ class QuestionViewCell: UITableViewCell {
     }
     
     fileprivate func configure() {
-        
+        accessoryType = .detailDisclosureButton
     }
 }

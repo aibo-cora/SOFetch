@@ -7,13 +7,15 @@
 
 import UIKit
 
+enum Section: String, CaseIterable, Hashable {
+    case main
+}
+
 class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
-    enum Section: String, CaseIterable, Hashable {
-        case main
-    }
-    typealias DataSource = UITableViewDiffableDataSource<Section, Question>
+    
+    typealias DataSource = CustomDataSource
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Question>
     
     var dataSource: DataSource! = nil
@@ -37,10 +39,9 @@ class ViewController: UIViewController {
         updateTableView()
     }
     
-    fileprivate func configureDataSource() ->
-        UITableViewDiffableDataSource<Section, Question> {
+    fileprivate func configureDataSource() -> DataSource {
         
-        return UITableViewDiffableDataSource(tableView: tableView) {
+        return DataSource(tableView: tableView) {
             (tableView, indexPath, question) -> UITableViewCell? in
             
             let cell = tableView.dequeueReusableCell(
@@ -66,4 +67,3 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDelegate {
     
 }
-
