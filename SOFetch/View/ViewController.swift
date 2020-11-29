@@ -90,12 +90,26 @@ class ViewController: UIViewController {
 
 //MARK: - UITableViewDelegate methods
 extension ViewController: UITableViewDelegate {
-    /// Fixed cell height.
-    /// - Parameters:
-    ///   - tableView: tableView
-    ///   - indexPath: indexPath
-    /// - Returns: height
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         150
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        
+        let menuConfiguration = UIContextMenuConfiguration(identifier: "Question Menu" as NSCopying, previewProvider: nil) { (menuElement) -> UIMenu? in
+            
+            let delete = UIAction(title: "Delete", image: nil, identifier: nil, discoverabilityTitle: nil, attributes: .destructive) { (action) in
+                
+                
+            }
+            
+            let menu = UIMenu(title: "", image: nil, identifier: .none, options: .displayInline, children: [delete])
+            return menu
+        }
+        return menuConfiguration
     }
 }
