@@ -34,6 +34,20 @@ class ViewController: UIViewController {
         Utility.fetchData()
     }
     
+    /// Disable Refresh button for 2 minutes, clear UI and fetch new set of questions.
+    /// - Parameter sender: Refresh.
+    @IBAction func refresh(_ sender: UIBarButtonItem) {
+        sender.isEnabled = false
+        
+        Utility.fetchedQuestions.removeAll()
+        NotificationCenter.default.post(name: .UpdateUI, object: nil)
+        Utility.fetchData()
+        
+        Timer.scheduledTimer(withTimeInterval: 120, repeats: false) { (timer) in
+            sender.isEnabled = true
+        }
+    }
+    
     /// Populate the tableView with cells containing data from server. Cells display title of the question and tags.
     /// - Returns: Individual cell.
     fileprivate func configureDataSource() -> DataSource {
@@ -46,6 +60,7 @@ class ViewController: UIViewController {
             cell.textLabel?.numberOfLines = 0
             cell.textLabel?.lineBreakMode = .byWordWrapping
             cell.textLabel?.text = question.title
+            cell.textLabel?.sizeToFit()
             
             var subtitle = ""
             for tag in question.tags {
