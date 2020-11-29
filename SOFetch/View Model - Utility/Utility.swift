@@ -34,7 +34,7 @@ final class Utility {
         }
     }
     
-    /// Parse the dictionary object of the JSON from the server and populate the fetchedQuestions array with questions that match the criteria. Criteria - The question with an accepted answer must contain more than 1 answer.
+    /// Parse the dictionary object of the JSON from the server and populate the fetchedQuestions array with questions that match the criteria. Criteria - The question with an accepted answer must contain more than 1 answer. Each object is being populated with 1: Title, 2: Tags, 3: Avatar of the person asking the question
     /// - Parameter json: JSON to parse.
     static func parse(serverResponse response: [String: Any]) {
         if let items = response["items"] as? [Any] {
@@ -43,6 +43,7 @@ final class Utility {
                     if let answers = itemDictionary["answer_count"] as? Int {
                         if answers > 1 {
                             guard let questionTitle = itemDictionary["title"] as? String else { return }
+                            //1
                             var question = Question(title: String(htmlEncodedString: questionTitle)) // might need to do this on main thread
                                                 
                             if let tags = itemDictionary["tags"] as? [String] {
@@ -50,7 +51,9 @@ final class Utility {
                                     question.tags.append(tag)
                                 }
                             }
-                            
+                            //2
+                            question.link = itemDictionary["link"] as? String
+                            //3
                             if let owner = itemDictionary["owner"] as? [String: Any] {
                                 if let photoLink = owner["profile_image"] as? String {
                                     question.ownerPhotoURL = NSURL(string: photoLink) as URL?

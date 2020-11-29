@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     typealias Snapshot = NSDiffableDataSourceSnapshot<Section, Question>
     
     var dataSource: DataSource! = nil
+    var feedbackGenerator : UIImpactFeedbackGenerator? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,6 +87,18 @@ class ViewController: UIViewController {
             dataSource.apply(snapshot, animatingDifferences: true)
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "questionDetail" {
+            if let detail = segue.destination as? PreviewQuestion {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    if let link = Utility.fetchedQuestions[indexPath.row].link {
+                        detail.questionURL = NSURL(string: link) as URL?
+                    }
+                }
+            }
+        }
+    }
 }
 
 //MARK: - UITableViewDelegate methods
@@ -95,7 +108,10 @@ extension ViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        feedbackGenerator = UIImpactFeedbackGenerator()
+        feedbackGenerator?.impactOccurred()
         
+        performSegue(withIdentifier: "questionDetail", sender: self)
     }
     
     func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {

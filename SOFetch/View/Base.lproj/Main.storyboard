@@ -35,11 +35,28 @@
                     </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="U88-Cn-gfg" id="lSg-iY-IRt"/>
+                        <segue destination="Jkf-K8-btK" kind="show" identifier="questionDetail" id="nvw-FT-EBL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1015.9420289855074" y="39.508928571428569"/>
+        </scene>
+        <!--Preview Question-->
+        <scene sceneID="grT-qf-jva">
+            <objects>
+                <viewController id="Jkf-K8-btK" customClass="PreviewQuestion" customModule="SOFetch" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o5d-su-lKz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="C0A-im-H7q"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="brQ-NI-wDT"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6SW-oK-wX6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1890" y="40"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="93G-J4-lYs">
