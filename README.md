@@ -7,3 +7,4 @@ Fetches questions from Stack Overflow server. Questions must meet following crit
 2. Have an accepted answer
 
 
+https://api.stackexchange.com/docs/advanced-search#order=desc&sort=activity&accepted=True&filter=default&site=stackoverflow

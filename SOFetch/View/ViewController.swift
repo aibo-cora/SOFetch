@@ -133,9 +133,10 @@ extension ViewController: UITableViewDelegate {
         
         let menuConfiguration = UIContextMenuConfiguration(identifier: "Question Menu" as NSCopying, previewProvider: nil) { (menuElement) -> UIMenu? in
             
-            let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) {
-                (action) in
+            let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) { (action) in
                 
+                Utility.fetchedQuestions.remove(at: indexPath.row)
+                NotificationCenter.default.post(name: .UpdateUI, object: nil)
             }
             
             let menu = UIMenu(title: "", image: nil, identifier: .none, options: .displayInline, children: [delete])
