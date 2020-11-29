@@ -17,7 +17,7 @@ class QuestionViewCell: UITableViewCell {
     static let reuseIdentifer = "QuestionViewCell"
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
         
         configure()
     }
@@ -27,6 +27,5 @@ class QuestionViewCell: UITableViewCell {
     }
     
     fileprivate func configure() {
-        accessoryType = .detailDisclosureButton
     }
 }
