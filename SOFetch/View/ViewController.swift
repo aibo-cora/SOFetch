@@ -102,8 +102,8 @@ extension ViewController: UITableViewDelegate {
         
         let menuConfiguration = UIContextMenuConfiguration(identifier: "Question Menu" as NSCopying, previewProvider: nil) { (menuElement) -> UIMenu? in
             
-            let delete = UIAction(title: "Delete", image: nil, identifier: nil, discoverabilityTitle: nil, attributes: .destructive) { (action) in
-                
+            let delete = UIAction(title: "Delete", image: UIImage(systemName: "trash"), attributes: .destructive) {
+                (action) in
                 
             }
             

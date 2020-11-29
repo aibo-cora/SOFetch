@@ -42,7 +42,8 @@ final class Utility {
                 if let itemDictionary = item as? [String: Any] {
                     if let answers = itemDictionary["answer_count"] as? Int {
                         if answers > 1 {
-                            var question = Question(title: itemDictionary["title"] as? String)
+                            guard let questionTitle = itemDictionary["title"] as? String else { return }
+                            var question = Question(title: String(htmlEncodedString: questionTitle)) // might need to do this on main thread
                                                 
                             if let tags = itemDictionary["tags"] as? [String] {
                                 for tag in tags {
